@@ -1,0 +1,13 @@
+version: '3.3'
+services:
+  app:
+    container_name: golang-cli
+    build: ./docker/app
+    volumes:
+      - ./src:/go/src/app
+    working_dir: /go/src/app
+    tty: true # コンテナの永続化
+    env_file: # .envファイル
+      - ./docker/.go_env
+    environment:
+      - TZ=Asia/Tokyo
