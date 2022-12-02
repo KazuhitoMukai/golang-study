@@ -11,3 +11,20 @@ services:
       - ./docker/.go_env
     environment:
       - TZ=Asia/Tokyo
+  db:
+    image: mysql:8.0.27
+    container_name: db
+    env_file:
+      - ./docker/.mysql_env
+    ports:
+      - "3306:3306"
+    volumes:
+      - db:/var/lib/mysql
+    networks:
+      - golang_test_network
+
+volumes:
+  db:
+networks:
+  golang_test_network:
+    external: true
