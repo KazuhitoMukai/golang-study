@@ -9,9 +9,6 @@ RUN apk update && \
 RUN go install honnef.co/go/tools/cmd/staticcheck@latest
 
 # mysql導入
+WORKDIR /go/src/app
 RUN go mod init hello-go
-# GOPATHクリア
-ENV GOPATH=
 RUN go get -u github.com/go-sql-driver/mysql@v1.7.0
-RUN rm ./go.mod
-RUN rm ./go.sum
